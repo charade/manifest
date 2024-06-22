@@ -14,6 +14,6 @@ export class User {
   @Column()
   pseudo: string;
 
-  @Column()
+  @Column('varchar', { default: null })
   avatar: string;
 }

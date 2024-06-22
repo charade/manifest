@@ -10,17 +10,22 @@ export class UserService {
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
 
-  create(createUserDto: CreateUserDto): Promise<User> {
+  signUp(createUserDto: CreateUserDto): Promise<User> {
     const newUser = this.userRepository.create(createUserDto);
+
     return this.userRepository.save(newUser);
+  }
+
+  findOneById(id: string) {
+    return this.userRepository.findOne({ where: { id } });
+  }
+
+  findOneByEmail(email: string) {
+    return this.userRepository.findOne({ where: { email } });
   }
 
   findAll() {
     return `This action returns all user`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

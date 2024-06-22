@@ -1,16 +1,14 @@
 import { IsEmail, IsNotEmpty } from 'class-validator';
 
 export class CreateUserDto {
-  @IsEmail()
-  @IsNotEmpty()
+  @IsEmail({}, { message: 'incorrect email format' })
   email: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'incorrect pseudo' })
   pseudo: string;
 
+  @IsNotEmpty()
   password: string;
-
-  avatar: string;
 }
 
 export class UpdateUserDto {
