@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto, UpdateUserDto } from './models/user.dto';
+import { UserDto, UpdateUserDto } from './models/user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './models/user.entity';
 import { Repository } from 'typeorm';
@@ -10,7 +10,7 @@ export class UserService {
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
 
-  signUp(createUserDto: CreateUserDto): Promise<User> {
+  signUp(createUserDto: UserDto): Promise<User> {
     const newUser = this.userRepository.create(createUserDto);
 
     return this.userRepository.save(newUser);
@@ -20,8 +20,13 @@ export class UserService {
     return this.userRepository.findOne({ where: { id } });
   }
 
-  findOneByEmail(email: string) {
-    return this.userRepository.findOne({ where: { email } });
+  findOneByCredentials(userCredential: { email?: string; pseudo?: string }) {
+    return this.userRepository.findOne({
+      where: [
+        { email: userCredential.email },
+        { pseudo: userCredential.pseudo },
+      ],
+    });
   }
 
   findAll() {

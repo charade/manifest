@@ -2,14 +2,15 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UserModule } from './user/user.module';
+import { UserModule } from './res/user/user.module';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { User } from './user/models/user.entity';
+import { User } from './res/user/models/user.entity';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    AuthModule,
     UserModule,
     TypeOrmModule.forRootAsync({
       useFactory: (configService: ConfigService) =>
@@ -22,12 +23,9 @@ import { AuthModule } from './auth/auth.module';
           username: configService.getOrThrow('MYSQL_USER'),
           password: configService.getOrThrow('MYSQL_PASSWORD'),
           synchronize: true,
-          entities: [User],
-          logging: true,
         }) as TypeOrmModuleOptions,
       inject: [ConfigService],
     }),
-    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

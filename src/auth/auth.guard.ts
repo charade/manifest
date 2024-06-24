@@ -9,7 +9,7 @@ import { JwtService } from '@nestjs/jwt';
 import { HTTP_RESPONSE_ENUM } from 'src/enums/http-response.enum';
 import { RequestKeysEnums } from 'src/enums/request.enum';
 
-import { UserService } from 'src/user/user.service';
+import { UserService } from 'src/res/user/user.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -22,6 +22,12 @@ export class AuthGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const token = this.extractToken(request);
 
+    if (!token) {
+      throw new HttpException(
+        HTTP_RESPONSE_ENUM.AUTHENTICATION_FAILED,
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
     try {
       const payload = await this.jwtService.verifyAsync(token, {
         secret: process.env.JWT_SECRET,

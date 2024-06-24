@@ -1,6 +1,6 @@
 export enum RouteEnum {
   Auth = 'auth',
-  SignIn = 'signIn',
-  SignUp = 'signUp',
+  SignIn = 'signin',
+  SignUp = 'signup',
   checkUser = 'check-user',
 }

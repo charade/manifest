@@ -23,10 +23,14 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   async signIn(
     @Body() payload: SignInDto,
-    @Res({ passthrough: true }) res: Response,
+    @Res() res: Response,
   ): Promise<void> {
-    const credentials = this.authService.signIn(payload);
-    res.cookie(process.env.AUTH_COOKIE, JSON.stringify(credentials));
+    const generatedToken = await this.authService.signIn(payload);
+    res.cookie(process.env.AUTH_COOKIE, `Bearer ${generatedToken}`, {
+      httpOnly: true,
+      maxAge: Date.now() + 3600 * 1000,
+    });
+    res.status(HttpStatus.OK).send();
   }
 
   @UseGuards(AuthGuard)

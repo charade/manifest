@@ -5,13 +5,13 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('varchar', { nullable: false, length: 100, unique: true })
+  @Column('varchar', { nullable: false, length: 100 })
   email: string;
 
   @Column('varchar', { nullable: false })
   password: string;
 
-  @Column()
+  @Column({ unique: true })
   pseudo: string;
 
   @Column('varchar', { default: null })

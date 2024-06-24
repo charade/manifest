@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UserService } from 'src/user/user.service';
+import { UserService } from 'src/res/user/user.service';
 import { SignInDto } from './dto';
 
 import * as bcrypt from 'bcrypt';
@@ -14,12 +14,15 @@ export class AuthService {
   ) {}
 
   /**
+   * @function signIn
    * when signIn payload fail to connect
    * don't want to share the exact field with client
+   *
+   * @param {credential} can either be email or pseudo
    */
-  async signIn({ email, password }: SignInDto) {
+  async signIn({ password, ...credential }: SignInDto) {
     try {
-      const user = await this.userService.findOneByEmail(email);
+      const user = await this.userService.findOneByCredentials(credential);
 
       if (!user) {
         throw new HttpException(
@@ -37,15 +40,12 @@ export class AuthService {
         );
       }
 
-      return {
-        access_token: this.jwtService.signAsync(
-          { id: user.id },
-          {
-            secret: process.env.JWT_SECRET,
-            expiresIn: process.env.JWT_EXPIRATION_DATE,
-          },
-        ),
-      };
+      return this.jwtService.signAsync(
+        { id: user.id },
+        {
+          secret: process.env.JWT_SECRET,
+        },
+      );
     } catch {
       throw new HttpException(
         HTTP_RESPONSE_ENUM.SERVER_ERROR,
