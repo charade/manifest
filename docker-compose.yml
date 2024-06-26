@@ -1,18 +1,35 @@
 services:
-  api:
+  backend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./backend/Dockerfile.server
     ports:
       - '3000:3000'
     environment:
       - PORT=3000
+    depends_on:
+      - db_service
+    links:
+      - db_service
     volumes:
-      - ./src:/app/src
+      - ./src:/backend/src
+
   db_service:
     image: mysql
-
     ports:
       - '3307:3307'
     env_file:
-      - .env
+      - ./backend/.env
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile.client
+    environment:
+      - PORT=80
+    ports:
+      - '4200:80'
+    volumes:
+      - ./src:/frontend/src
+    depends_on:
+      - backend

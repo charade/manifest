@@ -1,7 +1,7 @@
-node_modules
-test
-gitignore
-.git
-.prettierrc
-README.md
-Dockerfile
+*/node_modules
+*/test
+*/gitignore
+*/.git
+*/.prettierrc
+*/README.md
+*/Dockerfile
