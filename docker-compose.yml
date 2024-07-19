@@ -1,35 +1,23 @@
 services:
-  backend:
+  memo_db_service:
+    image: mysql
+    ports:
+      - '3307:3307'
+    env_file:
+      - ./api/.env
+
+  memo_api_service:
     build:
-      context: .
-      dockerfile: ./backend/Dockerfile.server
+      context: ./api
+      dockerfile: Dockerfile.api
     ports:
       - '3000:3000'
     environment:
       - PORT=3000
     depends_on:
-      - db_service
+      - memo_db_service
     links:
-      - db_service
+      - memo_db_service
     volumes:
-      - ./src:/backend/src
-
-  db_service:
-    image: mysql
-    ports:
-      - '3307:3307'
-    env_file:
-      - ./backend/.env
-
-  frontend:
-    build:
-      context: .
-      dockerfile: ./frontend/Dockerfile.client
-    environment:
-      - PORT=80
-    ports:
-      - '4200:80'
-    volumes:
-      - ./src:/frontend/src
-    depends_on:
-      - backend
+      - ./api/src:/memo-api/src
+      - /memo-api/node_modules
