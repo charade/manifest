@@ -8,6 +8,4 @@ import { ModalService } from 'app/modals/modal.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent {
-  #modalService: ModalService;
-}
+export class LoginComponent {}
