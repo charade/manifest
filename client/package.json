@@ -1,5 +1,5 @@
 {
-  "name": "memo-client-app",
+  "name": "memo-client",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -20,7 +20,12 @@
     "@angular/platform-browser": "^17.3.11",
     "@angular/platform-browser-dynamic": "^17.3.11",
     "@angular/router": "^17.3.11",
+    "@fortawesome/angular-fontawesome": "^0.14.1",
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@types/leaflet": "^1.9.12",
     "gsap": "^3.12.5",
+    "leaflet": "^1.9.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.7"

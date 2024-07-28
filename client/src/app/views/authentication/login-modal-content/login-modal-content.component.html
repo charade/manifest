@@ -1,0 +1,28 @@
+<div class="login-modal-content-container">
+  <h1>un souvenir, <br />un lieu, <br />un moment ...</h1>
+  <h3>connectes-toi</h3>
+  <form
+    #loginForm="ngForm"
+    (ngSubmit)="login(loginForm, emailInput.value, passwordInput.value)"
+  >
+    <div class="form-field-container">
+      <span>email*</span>
+      <input
+        #emailInput
+        required
+        name="email"
+        placeholder="example@gmail.com"
+      />
+    </div>
+    <div class="form-field-container">
+      <span>password*</span>
+      <input #passwordInput required name="password" placeholder="********" />
+    </div>
+    <button type="submit" class="login-submit-btn">connexion</button>
+  </form>
+
+  <h5 class="sign-up-redirect-label">Tu n'as pas de compte ?</h5>
+  <button class="create-account-btn" (click)="goToSignUpView()">
+    inscris-toi
+  </button>
+</div>

@@ -1,0 +1,64 @@
+@import "../../../../styles/mixins.scss";
+
+:host {
+  width: 100%;
+  height: 100%;
+
+  .login-modal-content-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    h1,
+    h3,
+    form {
+      color: #ffffffd7;
+      font-family: "Open-sans";
+    }
+
+    h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      line-height: 4rem;
+    }
+
+    h3 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    form {
+      @include authenticationFormStyle();
+
+      .login-submit-btn {
+        @include submitBtnStyle();
+        margin: 2rem 0;
+        background-color: rgba(255, 255, 255, 0.4);
+        color: rgba(255, 255, 255, 0.809);
+        &:hover {
+          background-color: rgb(78, 126, 169);
+        }
+      }
+    }
+
+    .sign-up-redirect-label {
+      color: rgba(255, 255, 255, 0.809);
+      align-self: center;
+      font-size: 1.5rem;
+      font-weight: 200;
+    }
+
+    .create-account-btn {
+      @include submitBtnStyle();
+      margin-top: 1rem;
+      background-color: rgb(108, 165, 131);
+      color: rgba(0, 0, 0, 0.95);
+
+      &:hover {
+        background-color: #09e889;
+      }
+    }
+  }
+}

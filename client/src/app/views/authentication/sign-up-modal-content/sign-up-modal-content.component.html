@@ -1,0 +1,66 @@
+<div class="sign-up-modal-content-container">
+  <button class="close-modal-btn" (click)="goToLoginPage()">
+    <app-icon [iconName]="IconEnum.Close" />
+  </button>
+
+  <h2>Crée ton compte,</h2>
+  <h2 class="bold">personnalises tes souvenirs .</h2>
+  <h3>
+    <strong>• </strong> ton mot de passe doit contenir au moins 8 caractères ,au
+    moins : une majuscule, une minuscule, un chiffre et un caractère spécial
+    parmi
+    <span class="special-characters-list">
+      {{ "!»#$%&'()*+,-./:;\=>?@[\]^_`{|}~" }}
+    </span>
+  </h3>
+
+  <form
+    #signupForm="ngForm"
+    (ngSubmit)="
+      createAccount(
+        signupForm,
+        emailInput.value,
+        passwordInput.value,
+        pseudoInput.value
+      )
+    "
+  >
+    <!-- email field -->
+    <div class="form-field-container">
+      <span>email*</span>
+      <input
+        #emailInput
+        required
+        ngModel
+        name="email"
+        type="email"
+        placeholder="example@gmail.com"
+      />
+    </div>
+
+    <!-- password field -->
+    <div class="form-field-container">
+      <span>password*</span>
+      <input
+        #passwordInput
+        required
+        ngModel
+        name="password"
+        placeholder="********"
+      />
+    </div>
+
+    <!-- pseudo -->
+    <div class="form-field-container">
+      <span>pseudo*</span>
+      <input
+        #pseudoInput
+        required
+        ngModel
+        name="pseudo"
+        placeholder="********"
+      />
+    </div>
+    <button class="sign-up-submit-btn">suivant</button>
+  </form>
+</div>

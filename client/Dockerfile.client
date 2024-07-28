@@ -1,5 +1,5 @@
 # FROM node:21-alpine3.17 AS build
-# WORKDIR /memo-client
+# WORKDIR /manifest-client
 
 # COPY . .
 # RUN npm install -g @angular/cli
@@ -8,7 +8,7 @@
 
 # FROM nginx:latest
 # COPY ./nginx.conf /etc/nginx/nginx.conf
-# COPY --from=build /memo-client/dist/memo-client-app /usr/share/nginx/html
+# COPY --from=build /manifest-client/dist/manifest-client-app /usr/share/nginx/html
 # EXPOSE 80
 
 FROM node:21-alpine AS build
@@ -19,5 +19,5 @@ RUN npm install
 RUN npm run build
 # Serve Application using Nginx Server
 FROM nginx:alpine
-COPY --from=build /app/dist/memo-client-app/ /usr/share/nginx/html
+COPY --from=build /app/dist/manifest-client-app/ /usr/share/nginx/html
 EXPOSE 80

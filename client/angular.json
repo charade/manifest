@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "memo-client-app": {
+    "memo-client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/memo-client-app",
+            "outputPath": "dist/memo-client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -33,7 +33,10 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.scss"
+              "@angular/cdk/overlay-prebuilt.css",
+              "leaflet/dist/leaflet.css",
+              "src/styles/index.scss",
+              "src/styles/fonts.scss"
             ],
             "scripts": []
           },
@@ -42,13 +45,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "8mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "8mb",
+                  "maximumError": "5mb"
                 }
               ],
               "outputHashing": "all"
@@ -68,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "memo-client-app:build:production"
+              "buildTarget": "memo-client:build:production"
             },
             "development": {
-              "buildTarget": "memo-client-app:build:development"
+              "buildTarget": "memo-client:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "memo-client-app:build"
+            "buildTarget": "memo-client:build"
           }
         },
         "test": {
