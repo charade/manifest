@@ -15,7 +15,7 @@ export class UserSubscriber implements EntitySubscriberInterface<UserEntity> {
   }
 
   // Treating user registration data(password && email) before recording
-  async beforeInsert({ entity }: InsertEvent<UserEntity>): Promise<void> {
+  async beforeInsert({ entity }: InsertEvent<UserEntity>): Promise<any> {
     if (entity.password) {
       entity.password = await generateHash(entity.password);
     }
@@ -24,9 +24,17 @@ export class UserSubscriber implements EntitySubscriberInterface<UserEntity> {
       entity.email = entity.email.toLocaleLowerCase();
     }
   }
-  async beforeUpdate({ entity }: UpdateEvent<UserEntity>): Promise<void> {
+
+  async beforeUpdate({
+    entity,
+    databaseEntity,
+  }: UpdateEvent<UserEntity>): Promise<any> {
     if (entity.password) {
       entity.password = await generateHash(entity.password);
+    }
+
+    if (entity.password !== databaseEntity?.password) {
+      entity.password = entity.password;
     }
 
     if (entity.email) {

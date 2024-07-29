@@ -1,4 +1,3 @@
-import { Exclude } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
@@ -12,11 +11,9 @@ export class UserEntity {
   uuid: string;
 
   @Column('varchar', { nullable: false, length: 100 })
-  @Exclude()
   email: string;
 
   @Column('varchar', { nullable: false })
-  @Exclude()
   password: string;
 
   @Column({ unique: true })

@@ -4,6 +4,7 @@ import { AuthenticationViewsEnum, IconEnum } from '@enums';
 import { AuthenticationViewsTrackerService } from '@services';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '@services';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up-modal-content',
@@ -30,6 +31,15 @@ export class SignUpModalContentComponent {
     if (form.invalid) {
       return;
     }
-    this.#authService.signup({ email, password, pseudo }).subscribe();
+    this.#authService
+      .signup({ email, password, pseudo })
+      .pipe(
+        tap(() =>
+          this.#authenticationViewsTrackerService.setValue(
+            AuthenticationViewsEnum.Login
+          )
+        )
+      )
+      .subscribe();
   }
 }

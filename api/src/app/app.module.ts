@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { UserSubscriber } from './user/subscribers/user-subscriber';
 
 @Module({
   imports: [
@@ -25,7 +26,8 @@ import { AuthModule } from './auth/auth.module';
           username: configService.getOrThrow('MYSQL_USER'),
           password: configService.getOrThrow('MYSQL_PASSWORD'),
           synchronize: true,
-        } as TypeOrmModuleAsyncOptions;
+          subscribers: [UserSubscriber],
+        };
       },
       inject: [ConfigService],
     }),

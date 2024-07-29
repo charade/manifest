@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   HttpCode,
+  HttpException,
   HttpStatus,
   Post,
   Req,
@@ -25,12 +26,16 @@ export class AuthController {
     @Body() payload: SignInDto,
     @Res() res: Response,
   ): Promise<void> {
-    const generatedToken = await this.authService.signIn(payload);
-    res.cookie(process.env.AUTH_COOKIE, `Bearer ${generatedToken}`, {
-      httpOnly: true,
-      maxAge: Date.now() + 3600 * 1000,
-    });
-    res.status(HttpStatus.OK).send();
+    try {
+      const generatedToken = await this.authService.signIn(payload);
+      res.cookie(process.env.AUTH_COOKIE, `Bearer ${generatedToken}`, {
+        httpOnly: true,
+        maxAge: Date.now() + 3600 * 1000,
+      });
+      res.status(HttpStatus.OK).send();
+    } catch (error) {
+      throw new HttpException(error.message, error.status);
+    }
   }
 
   @UseGuards(AuthGuard)
