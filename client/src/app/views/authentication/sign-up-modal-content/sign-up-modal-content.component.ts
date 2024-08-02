@@ -5,11 +5,12 @@ import { AuthenticationViewsTrackerService } from '@services';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '@services';
 import { tap } from 'rxjs';
+import { IsSamePasswordDirective } from 'app/directives/isSamePassword';
 
 @Component({
   selector: 'app-sign-up-modal-content',
   standalone: true,
-  imports: [IconComponent, FormsModule],
+  imports: [IconComponent, FormsModule, IsSamePasswordDirective],
   templateUrl: './sign-up-modal-content.component.html',
   styleUrl: './sign-up-modal-content.component.scss',
 })

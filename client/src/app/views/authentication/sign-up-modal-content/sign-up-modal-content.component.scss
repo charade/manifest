@@ -53,6 +53,10 @@
     form {
       @include authenticationFormStyle();
 
+      ::ng-deep .error-field {
+        color: red;
+      }
+
       .sign-up-submit-btn {
         @include submitBtnStyle();
         margin-top: 2rem;

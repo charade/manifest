@@ -9,9 +9,7 @@
     <strong>• </strong> ton mot de passe doit contenir au moins 8 caractères ,au
     moins : une majuscule, une minuscule, un chiffre et un caractère spécial
     parmi
-    <span class="special-characters-list">
-      {{ "!»#$%&'()*+,-./:;\=>?@[\]^_`{|}~" }}
-    </span>
+    <span class="special-characters-list">{{ "#?!@$%^&*-." }}</span>
   </h3>
 
   <form
@@ -29,25 +27,53 @@
     <div class="form-field-container">
       <span>email*</span>
       <input
-        #emailInput
-        required
+        #emailInput="ngModel"
         ngModel
+        required
         name="email"
         type="email"
         placeholder="example@gmail.com"
+        pattern="^(\w([-.]\w)?)+@([\w-]+\.)+[\w]{2,4}$"
       />
+      @if(signupForm.submitted && emailInput.invalid){
+
+      <span class="error-field">please enter a valid e-mail</span>
+      }
     </div>
 
     <!-- password field -->
     <div class="form-field-container">
       <span>password*</span>
+      <!-- password must contain a least one maj, one min, one number && one special character -->
       <input
-        #passwordInput
+        #passwordInput="ngModel"
         required
         ngModel
         name="password"
+        pattern="^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)(?=.*?[#?!@$%^&*-.]).{8,}$"
         placeholder="********"
       />
+      @if(signupForm.submitted && passwordInput.invalid){
+      <span class="error-field"
+        >please check the password conditions above</span
+      >
+      }
+    </div>
+
+    <!-- check password field -->
+    <div class="form-field-container">
+      <span>Check your password*</span>
+      <input
+        #checkPasswordInput="ngModel"
+        required
+        ngModel
+        name="password-check"
+        placeholder="********"
+        [isSamePassword]="passwordInput.value"
+      />
+      @if(passwordInput.valid && checkPasswordInput.invalid){
+      <span class="error-field">password must be the same</span>
+      }
     </div>
 
     <!-- pseudo -->

@@ -31,7 +31,7 @@ export class AuthenticationComponent implements OnDestroy {
             ? LoginModalContentComponent
             : SignUpModalContentComponent,
           {
-            config: { width: ' 37rem', height: '55rem' },
+            config: { width: ' 37rem', minHeight: '65rem' },
           }
         )
       );

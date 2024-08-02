@@ -1,5 +1,5 @@
 <div class="login-modal-content-container">
-  <h1>un souvenir, <br />un lieu, <br />un moment ...</h1>
+  <h1>une note, <br />un lieu, <br />un souvenir ...</h1>
   <h3>connectes-toi</h3>
   <form
     #loginForm="ngForm"
@@ -21,8 +21,10 @@
     <button type="submit" class="login-submit-btn">connexion</button>
   </form>
 
-  <h5 class="sign-up-redirect-label">Tu n'as pas de compte ?</h5>
-  <button class="create-account-btn" (click)="goToSignUpView()">
-    inscris-toi
-  </button>
+  <div class="login-footer">
+    <h5 class="sign-up-redirect-label">Tu n'as pas de compte ?</h5>
+    <button class="create-account-btn" (click)="goToSignUpView()">
+      inscris-toi
+    </button>
+  </div>
 </div>
