@@ -19,7 +19,6 @@ export class AuthService {
   async signIn({ password, email }: SignInDto) {
     try {
       const user = await this.userService.findOneByEmail(email);
-      console.log(user);
       if (!user) {
         throw new HttpException(
           HTTP_RESPONSE_ENUM.EMAIL_OR_PASSWORD_NOT_VALID,
@@ -35,7 +34,6 @@ export class AuthService {
           HttpStatus.BAD_REQUEST,
         );
       }
-
       return this.jwtService.signAsync(
         { id: user.uuid },
         {

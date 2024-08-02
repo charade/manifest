@@ -16,9 +16,10 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));
   // port setting
+
   const port = process.env.APP_PORT || 3000;
-  await app.listen(port, () =>
-    console.log(`App running in ${process.env.APP_ENV} mode on port ${port}`),
-  );
+  await app.listen(port, () => {
+    console.log(`App running in ${port} mode on port ${port}`);
+  });
 }
 void bootstrap();
