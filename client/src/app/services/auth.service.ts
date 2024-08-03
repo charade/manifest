@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { LoginDto, SignUpDto } from '@dto';
+import { HttpPathsEnum } from '@enums';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -9,16 +10,9 @@ export class AuthService {
   #httpClient = inject(HttpClient);
 
   login(credentials: LoginDto) {
-    return this.#httpClient.post(
-      'http://localhost:3000/memo/auth/login',
-      credentials
-    );
+    return this.#httpClient.post(HttpPathsEnum.Login, credentials);
   }
-
   signup(userInfos: SignUpDto) {
-    return this.#httpClient.post(
-      'http://localhost:3000/memo/user/signup',
-      userInfos
-    );
+    return this.#httpClient.post(HttpPathsEnum.SignUp, userInfos);
   }
 }

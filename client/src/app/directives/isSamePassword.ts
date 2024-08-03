@@ -18,7 +18,7 @@ import {
   ],
 })
 export class IsSamePasswordDirective implements Validator {
-  @Input({ required: true }) isSamePassword: string;
+  @Input() isSamePassword: string;
 
   validate(control: AbstractControl): ValidationErrors {
     return this.isSamePassword === control.value
