@@ -15,10 +15,14 @@ import { RequestKeysEnums } from 'src/app/enums/request.enum';
 import { AuthService } from '../services/auth.service';
 import { SignInDto } from '../models/dto';
 import { AuthGuard } from '../guards/auth.guard';
+import { JwtService } from '@nestjs/jwt';
 
 @Controller(RouteEnum.Auth)
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly jwtService: JwtService,
+  ) {}
 
   @Post(RouteEnum.SignIn)
   @HttpCode(HttpStatus.OK)
@@ -27,7 +31,13 @@ export class AuthController {
     @Res() res: Response,
   ): Promise<void> {
     try {
-      const generatedToken = await this.authService.signIn(payload);
+      const userId = await this.authService.signIn(payload);
+      const generatedToken = await this.jwtService.signAsync(
+        { id: userId },
+        {
+          secret: process.env.JWT_SECRET,
+        },
+      );
       res.cookie(process.env.AUTH_COOKIE, `Bearer ${generatedToken}`, {
         httpOnly: true,
         maxAge: Date.now() + 3600 * 1000,

@@ -1,18 +1,18 @@
 import { Routes } from '@angular/router';
 import { ModalsRoutesOutletsEnum, MainRoutesEnum } from '@enums';
-import { MapComponent } from './views/map/map.component';
-import { AuthenticationComponent } from './views/authentication/authentication.component';
 
 export const routes: Routes = [
   {
     path: MainRoutesEnum.Root,
-    component: MapComponent,
+    loadComponent: () =>
+      import('./views/authentication/authentication.component').then(
+        (c) => c.AuthenticationComponent
+      ),
   },
-
   {
-    path: MainRoutesEnum.Root,
-    outlet: ModalsRoutesOutletsEnum.Authentication,
-    component: AuthenticationComponent,
+    path: MainRoutesEnum.Profile,
+    loadComponent: () =>
+      import('./views/map/map.component').then((c) => c.MapComponent),
   },
   {
     path: '**',

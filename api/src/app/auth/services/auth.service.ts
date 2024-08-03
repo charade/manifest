@@ -1,5 +1,4 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
 import { UserService } from 'src/app/user/services/user.service';
 import { SignInDto } from '../models/dto';
 
@@ -8,10 +7,7 @@ import { HTTP_RESPONSE_ENUM } from 'src/app/enums/http-response.enum';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private userService: UserService,
-    private jwtService: JwtService,
-  ) {}
+  constructor(private userService: UserService) {}
   /**
    * when signIn payload fail to connect
    * don't want to share the exact field with client
@@ -34,12 +30,7 @@ export class AuthService {
           HttpStatus.BAD_REQUEST,
         );
       }
-      return this.jwtService.signAsync(
-        { id: user.uuid },
-        {
-          secret: process.env.JWT_SECRET,
-        },
-      );
+      return user.uuid;
     } catch (error) {
       throw new HttpException(
         error.response || HTTP_RESPONSE_ENUM.SERVER_ERROR,

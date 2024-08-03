@@ -17,6 +17,7 @@ export class MapComponent implements AfterViewInit {
   readonly #mapMinZoom = 5;
 
   ngAfterViewInit(): void {
+    console.log('created');
     this.#mapObj = L.map(this.mapContainerId, {
       minZoom: this.#mapMinZoom,
       zoomControl: false,

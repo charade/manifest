@@ -1,12 +1,13 @@
 import { Component, inject, OnDestroy } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   ModalsRoutesOutletsEnum,
   MainRoutesEnum,
   AuthenticationViewsEnum,
 } from '@enums';
 import { AuthenticationViewsTrackerService, AuthService } from '@services';
-import { Subscription } from 'rxjs';
+import { Subscription, tap } from 'rxjs';
 
 @Component({
   selector: 'app-login-content',
@@ -21,6 +22,8 @@ export class LoginModalContentComponent implements OnDestroy {
   #authenticationViewTrackerService = inject(AuthenticationViewsTrackerService);
   #authService = inject(AuthService);
   #subscription: Subscription[] = [];
+  #router = inject(Router);
+  #route = inject(ActivatedRoute);
 
   ngOnDestroy(): void {
     this.#subscription.forEach((s) => s.unsubscribe());
@@ -38,7 +41,16 @@ export class LoginModalContentComponent implements OnDestroy {
     }
 
     this.#subscription.push(
-      this.#authService.login({ email, password }).subscribe()
+      this.#authService
+        .login({ email, password })
+        .pipe(
+          tap(() => {
+            this.#router.navigate([MainRoutesEnum.Profile], {
+              relativeTo: this.#route,
+            });
+          })
+        )
+        .subscribe()
     );
   }
 }

@@ -1,4 +1,4 @@
-import { Component, inject, effect, OnInit, OnDestroy } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { ModalService } from '../../services/modal/modal.service';
 import { AuthenticationViewsTrackerService } from '@services';
 import { AuthenticationViewsEnum } from '@enums';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-login',
   standalone: true,
   imports: [],
-  template: '',
+  template: `<div class="map-img-cover"></div>`,
   styleUrl: './authentication.component.scss',
   providers: [ModalService],
 })
