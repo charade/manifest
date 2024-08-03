@@ -12,7 +12,9 @@ export const routes: Routes = [
   {
     path: MainRoutesEnum.Profile,
     loadComponent: () =>
-      import('./views/map/map.component').then((c) => c.MapComponent),
+      import('./views/profile/profile.component').then(
+        (c) => c.ProfileComponent
+      ),
   },
   {
     path: '**',

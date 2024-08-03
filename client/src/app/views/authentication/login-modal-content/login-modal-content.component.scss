@@ -1,4 +1,5 @@
 @import "../../../../styles/mixins.scss";
+@import "../../../../styles/colors.scss";
 
 :host {
   width: 100%;
@@ -37,8 +38,9 @@
         margin: 2rem 0;
         background-color: rgba(255, 255, 255, 0.4);
         color: rgba(255, 255, 255, 0.809);
+
         &:hover {
-          background-color: rgb(78, 126, 169);
+          background-color: $light-blue;
         }
       }
     }

@@ -1,18 +1,18 @@
 import { AfterViewInit, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { UserService } from '@services';
+import { AvatarComponent } from '../../shared-component/avatar/avatar.component';
 import * as L from 'leaflet';
-import { tap } from 'rxjs';
 
 @Component({
-  selector: 'app-map',
+  selector: 'app-profile',
   standalone: true,
-  imports: [],
-  templateUrl: './map.component.html',
-  styleUrl: './map.component.scss',
+  imports: [AvatarComponent],
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.scss',
   providers: [UserService],
 })
-export class MapComponent implements AfterViewInit {
+export class ProfileComponent implements AfterViewInit {
   mapContainerId = 'map-container';
 
   #mapObj: L.Map;

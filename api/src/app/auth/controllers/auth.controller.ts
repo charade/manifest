@@ -40,7 +40,7 @@ export class AuthController {
         maxAge: Date.now() + 3600 * 1000,
         secure: true,
       });
-      return res.json({ pseudo: userInfo.pseudo, avatar: userInfo.avatar });
+      res.json({ pseudo: userInfo.pseudo, avatar: userInfo.avatar });
     } catch (error) {
       throw new HttpException(error.message, error.status);
     }
