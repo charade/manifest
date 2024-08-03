@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { ModalsRoutesOutletsEnum, MainRoutesEnum } from '@enums';
+import { MainRoutesEnum } from '@enums';
 
 export const routes: Routes = [
   {

@@ -30,7 +30,7 @@ export class AuthService {
           HttpStatus.BAD_REQUEST,
         );
       }
-      return user.uuid;
+      return { pseudo: user.pseudo, id: user.uuid, avatar: user.avatar };
     } catch (error) {
       throw new HttpException(
         error.response || HTTP_RESPONSE_ENUM.SERVER_ERROR,

@@ -26,14 +26,11 @@ export class AuthController {
 
   @Post(RouteEnum.SignIn)
   @HttpCode(HttpStatus.OK)
-  async signIn(
-    @Body() payload: SignInDto,
-    @Res() res: Response,
-  ): Promise<void> {
+  async signIn(@Body() payload: SignInDto, @Res() res: Response) {
     try {
-      const userId = await this.authService.signIn(payload);
+      const userInfo = await this.authService.signIn(payload);
       const generatedToken = await this.jwtService.signAsync(
-        { id: userId },
+        { id: userInfo.id },
         {
           secret: process.env.JWT_SECRET,
         },
@@ -41,8 +38,9 @@ export class AuthController {
       res.cookie(process.env.AUTH_COOKIE, `Bearer ${generatedToken}`, {
         httpOnly: true,
         maxAge: Date.now() + 3600 * 1000,
+        secure: true,
       });
-      res.status(HttpStatus.OK).send();
+      return res.json({ pseudo: userInfo.pseudo, avatar: userInfo.avatar });
     } catch (error) {
       throw new HttpException(error.message, error.status);
     }
