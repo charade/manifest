@@ -1,4 +1,8 @@
 <div class="navbar-container">
-  <app-avatar class="user-avatar" [link]="userInfo()?.avatar" />
+  <app-avatar
+    class="user-avatar"
+    [link]="userInfo()?.avatar"
+    (click)="openEditProfileModal()"
+  />
   <h2 class="user-pseudo">{{ userInfo()?.pseudo }}</h2>
 </div>
