@@ -29,10 +29,7 @@ export class AuthenticationComponent implements OnDestroy {
         this.#modalService.open(
           view === AuthenticationViewsEnum.Login
             ? LoginModalContentComponent
-            : SignUpModalContentComponent,
-          {
-            config: { width: ' 37rem', minHeight: '65rem' },
-          }
+            : SignUpModalContentComponent
         )
       );
   }
