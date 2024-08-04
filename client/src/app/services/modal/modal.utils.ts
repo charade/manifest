@@ -36,8 +36,8 @@ export namespace OverlayUtils {
     overlay: Overlay,
     origin?: Element
   ): OverlayConfig => ({
-    width: '10rem',
-    height: '10rem',
+    width: ' 37rem',
+    minHeight: '65rem',
     hasBackdrop: true,
     scrollStrategy: overlay.scrollStrategies.reposition(),
     positionStrategy: origin

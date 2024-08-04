@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { LoginDto, LoginSuccessDto, SignUpDto } from '@dto';
-import { HttpPathsEnum } from '@enums';
+import { HttpPathsEnum, StorageEnum } from '@enums';
 import { BehaviorSubject, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  isAuthenticated = false;
   currentUser$: BehaviorSubject<LoginSuccessDto | null> =
     new BehaviorSubject<LoginSuccessDto | null>(null);
 
@@ -15,7 +14,17 @@ export class AuthService {
   login(credentials: LoginDto) {
     return this.#httpClient
       .post<LoginSuccessDto>(HttpPathsEnum.Login, credentials)
-      .pipe(tap((userInfo) => this.currentUser$.next(userInfo)));
+      .pipe(
+        tap((userInfo) => {
+          this.currentUser$.next(userInfo);
+          const JSON_USER = JSON.stringify(userInfo);
+          localStorage.setItem(StorageEnum.AUTH_LOCAL, JSON_USER);
+        })
+      );
+  }
+
+  setCurrentUserInfos(user: LoginSuccessDto) {
+    this.currentUser$.next(user);
   }
 
   signup(userInfos: SignUpDto) {

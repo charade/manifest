@@ -19,8 +19,6 @@
 
     .user-avatar {
       @include flexCenteredItems();
-      // height: 10rem;
-      // width: 10rem;
       margin: 1.5rem 0;
       border-radius: 50%;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
@@ -29,7 +27,7 @@
 
     .user-pseudo {
       position: relative;
-      color: rgba(255, 255, 255, 0.9);
+      color: rgb(150, 149, 149);
       font-family: "Open-sans";
       font-weight: 600;
       font-size: 2rem;
@@ -81,9 +79,19 @@
           margin: 0.5rem 0;
           cursor: pointer;
           line-height: 2.75rem;
+          transition: color 0.3s ease-in-out;
 
           &:hover {
             text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: rgba(255, 255, 255, 0.7);
+          }
+
+          &.active {
+            color: rgb(157, 219, 255);
+            cursor: auto;
+            text-decoration: none;
           }
         }
       }
@@ -101,30 +109,33 @@
 
 @media screen and (min-width: $media-MD) {
   .navbar-container {
-    width: 35rem !important;
+    position: static !important;
+    width: 25rem !important;
+    border-radius: 0;
     border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: none !important;
   }
 
   .user-pseudo {
-    margin: 7rem 0;
+    margin: 5rem 0;
   }
 }
 
 @media screen and (min-width: $media-M) {
   .navbar-container {
-    width: 38rem !important;
+    width: 28rem !important;
   }
 }
 
 @media screen and (min-width: $media-L) {
   .navbar-container {
-    width: 43rem !important;
+    width: 33rem !important;
   }
 }
 
 @media screen and (min-width: $media-XL) {
   .navbar-container {
-    width: 23rem !important;
+    width: 26rem !important;
 
     .user-pseudo {
       margin: 0;

@@ -4,7 +4,7 @@
     [link]="userInfo()?.avatar"
     (click)="openEditProfileModal()"
   />
-  <h2 class="user-pseudo">{{ userInfo()?.pseudo }}</h2>
+  <h2 class="user-pseudo">{{ "~ " + userInfo()?.pseudo }}</h2>
 
   <div class="side-nav-content">
     @for(section of SideNavActionsEnum.allSections; track section){
@@ -12,8 +12,12 @@
       {{ SideNavActionsEnum.getSideNavSectionsLabel.get(section) }}
     </h3>
     <ul class="side-nav-section-actions">
-      @for(action of SideNavActionsEnum.getActions.get(section); track action) {
-      <li>{{ action }}</li>
+      @for(action of
+      SideNavActionsEnum.getActionsButtons(currentRoute()).get(section); track
+      $index) {
+      <li [class.active]="action.active" (click)="execSideNavAction(action)">
+        {{ action.label }}
+      </li>
       }
     </ul>
     }
