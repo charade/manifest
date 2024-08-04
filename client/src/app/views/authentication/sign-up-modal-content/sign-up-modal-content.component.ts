@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { IconComponent } from '../../../shared-component/icon/icon.component';
+import { IconComponent } from '../../../components/icon/icon.component';
 import { AuthenticationViewsEnum, IconEnum } from '@enums';
 import { AuthenticationViewsTrackerService } from '@services';
 import { FormsModule, NgForm } from '@angular/forms';

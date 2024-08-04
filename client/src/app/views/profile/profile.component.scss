@@ -1,13 +1,6 @@
 :host {
   height: 100%;
 
-  .profile-header {
-    position: absolute;
-    height: 6rem;
-    width: 100%;
-    z-index: 401; // this only need to be a bit upper than the map layer
-    padding: 1rem;
-  }
   #map-container {
     height: 100%;
   }

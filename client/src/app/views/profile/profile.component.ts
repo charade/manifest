@@ -1,9 +1,8 @@
 import { AfterViewInit, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ModalService, UserService } from '@services';
-import { AvatarComponent } from '../../shared-component/avatar/avatar.component';
+import { UserService } from '@services';
+import { AvatarComponent } from '../../components/avatar/avatar.component';
 import * as L from 'leaflet';
-import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +17,6 @@ export class ProfileComponent implements AfterViewInit {
 
   #mapObj: L.Map;
   #userService = inject(UserService);
-  #modalService = inject(ModalService);
 
   readonly #mapMaxZoom = 20;
   readonly #mapMinZoom = 5;
@@ -46,11 +44,5 @@ export class ProfileComponent implements AfterViewInit {
         ),
       500
     );
-  }
-
-  openEditProfileModal() {
-    this.#modalService.open(EditProfileComponent, {
-      closeOnBackDropClick: true,
-    });
   }
 }

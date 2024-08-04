@@ -4,12 +4,11 @@
   height: 100vh;
   top: 0;
   left: 0;
-  z-index: 3;
+  z-index: 1000;
 
   .map-img-cover {
     height: 100%;
     background-image: url("../../../assets/pics/memo.png");
     background-size: cover;
-    z-index: 1;
   }
 }
