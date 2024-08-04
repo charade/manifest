@@ -3,6 +3,7 @@ import { AvatarComponent } from '../avatar/avatar.component';
 import { AuthService, ModalService } from '@services';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { EditProfileComponent } from 'app/views/edit-profile/edit-profile.component';
+import { SideNavActionsEnum } from '@enums';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,6 +14,8 @@ import { EditProfileComponent } from 'app/views/edit-profile/edit-profile.compon
 })
 export class SidebarComponent {
   userInfo = toSignal(inject(AuthService).currentUser$);
+
+  SideNavActionsEnum = SideNavActionsEnum;
 
   #modalService = inject(ModalService);
 

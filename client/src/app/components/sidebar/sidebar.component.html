@@ -5,4 +5,17 @@
     (click)="openEditProfileModal()"
   />
   <h2 class="user-pseudo">{{ userInfo()?.pseudo }}</h2>
+
+  <div class="side-nav-content">
+    @for(section of SideNavActionsEnum.allSections; track section){
+    <h3 class="side-nav-section-label">
+      {{ SideNavActionsEnum.getSideNavSectionsLabel.get(section) }}
+    </h3>
+    <ul class="side-nav-section-actions">
+      @for(action of SideNavActionsEnum.getActions.get(section); track action) {
+      <li>{{ action }}</li>
+      }
+    </ul>
+    }
+  </div>
 </div>
