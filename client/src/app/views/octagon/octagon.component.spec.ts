@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MemosComponent } from './memos.component';
+import { GroupsComponent } from './octagon.component';
 
-describe('MemosComponent', () => {
-  let component: MemosComponent;
-  let fixture: ComponentFixture<MemosComponent>;
+describe('GroupsComponent', () => {
+  let component: GroupsComponent;
+  let fixture: ComponentFixture<GroupsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MemosComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(MemosComponent);
+      imports: [GroupsComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(GroupsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

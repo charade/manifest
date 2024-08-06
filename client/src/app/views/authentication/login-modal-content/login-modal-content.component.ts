@@ -45,7 +45,7 @@ export class LoginModalContentComponent implements OnDestroy {
         .login({ email, password })
         .pipe(
           tap(() => {
-            this.#router.navigate([MainRoutesEnum.Profile], {
+            this.#router.navigate([MainRoutesEnum.Feed], {
               relativeTo: this.#route,
             });
           })

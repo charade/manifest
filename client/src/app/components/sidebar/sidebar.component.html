@@ -4,7 +4,7 @@
     [link]="userInfo()?.avatar"
     (click)="openEditProfileModal()"
   />
-  <h2 class="user-pseudo">{{ "~ " + userInfo()?.pseudo }}</h2>
+  <h2 class="user-pseudo">{{ "@ " + userInfo()?.pseudo }}</h2>
 
   <div class="side-nav-content">
     @for(section of SideNavActionsEnum.allSections; track section){

@@ -4,9 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-groups',
   standalone: true,
   imports: [],
-  templateUrl: './groups.component.html',
-  styleUrl: './groups.component.scss'
+  templateUrl: './octagon.component.html',
+  styleUrl: './octagon.component.scss',
 })
-export class GroupsComponent {
-
-}
+export class OctagonComponent {}

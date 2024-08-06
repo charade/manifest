@@ -9,30 +9,26 @@ export const routes: Routes = [
     loadComponent: () => AuthenticationComponent,
   },
   {
-    path: MainRoutesEnum.Profile,
-    canActivate: [authenticationGuard],
-    loadComponent: () =>
-      import('./views/profile/profile.component').then(
-        (c) => c.ProfileComponent
-      ),
-  },
-  {
     path: MainRoutesEnum.Feed,
     canActivate: [authenticationGuard],
     loadComponent: () =>
       import('./views/feed/feed.component').then((c) => c.FeedComponent),
   },
   {
-    path: MainRoutesEnum.Groups,
+    path: MainRoutesEnum.Octagon,
     canActivate: [authenticationGuard],
     loadComponent: () =>
-      import('./views/groups/groups.component').then((c) => c.GroupsComponent),
+      import('./views/octagon/octagon.component').then(
+        (c) => c.OctagonComponent
+      ),
   },
   {
-    path: MainRoutesEnum.Memos,
+    path: MainRoutesEnum.MyCourses,
     canActivate: [authenticationGuard],
     loadComponent: () =>
-      import('./views/memos/memos.component').then((c) => c.MemosComponent),
+      import('./views/my-courses/my-courses.component').then(
+        (c) => c.MyCoursesComponent
+      ),
   },
   {
     path: MainRoutesEnum.Preferences,

@@ -10,9 +10,9 @@ export enum SideNavActionsButtonsEnum {
   Preferences = 'Préférences',
   Language = 'Langue',
   Logout = 'Déconnexion',
-  Memos = 'Mémos',
-  Groups = 'Groupes',
-  Discover = 'tout est meilleur dans le partage ✨',
+  MyCourses = 'Mes cours',
+  Octagon = ' Octogone  🤺',
+  Discover = 'Des cours à la carte  📌',
 }
 
 // allow to define action name and to disable button action
@@ -41,8 +41,8 @@ export namespace SideNavActionsEnum {
   ]);
 
   const activitiesSectionActions = Object.freeze([
-    SideNavActionsButtonsEnum.Memos,
-    SideNavActionsButtonsEnum.Groups,
+    SideNavActionsButtonsEnum.MyCourses,
+    SideNavActionsButtonsEnum.Octagon,
   ]);
 
   const discoverSectionActions = Object.freeze([
@@ -82,8 +82,8 @@ export namespace SideNavActionsEnum {
     MainRoutesEnum
   >([
     [SideNavActionsButtonsEnum.Discover, MainRoutesEnum.Feed],
-    [SideNavActionsButtonsEnum.Groups, MainRoutesEnum.Groups],
-    [SideNavActionsButtonsEnum.Memos, MainRoutesEnum.Memos],
+    [SideNavActionsButtonsEnum.Octagon, MainRoutesEnum.Octagon],
+    [SideNavActionsButtonsEnum.MyCourses, MainRoutesEnum.MyCourses],
     [SideNavActionsButtonsEnum.Preferences, MainRoutesEnum.Preferences],
   ]);
 }

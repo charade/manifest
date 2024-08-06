@@ -1,1 +1,22 @@
-<p>feed works!</p>
+<div class="feed-container">
+  <div class="feed-content">
+    @for(course of CoursesEnum.all; track $index){
+    <div class="course-card">
+      <img
+        class="course-card-symbol"
+        [src]="CoursesEnum.icons.get(course)"
+        alt="course-icon"
+      />
+      <h3 class="course-card-title">{{ CoursesEnum.title.get(course) }}</h3>
+      <p class="course-card-description">
+        {{ CoursesEnum.description.get(course) }}
+      </p>
+
+      <button class="course-card-btn">
+        <span>voir plus ...</span>
+        <app-icon class="arrow-right-icon" [iconName]="IconEnum.ArrowRight" />
+      </button>
+    </div>
+    }
+  </div>
+</div>

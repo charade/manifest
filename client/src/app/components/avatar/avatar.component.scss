@@ -4,8 +4,8 @@
 :host {
   .avatar-container {
     @include flexCenteredItems();
-    height: 8rem;
-    width: 8rem;
+    height: 6rem;
+    width: 6rem;
     border-radius: 50%;
     background-color: rgba(22, 177, 254, 0.4);
     overflow: hidden;
@@ -20,17 +20,8 @@
 
       .empty-avatar-icon {
         @include flexCenteredItems();
-        width: 61%;
-        height: 61%;
-      }
-
-      .add-avatar-icon {
-        position: absolute;
-        top: 3rem;
-        right: 3%;
-        font-size: 1.75rem;
-        font-weight: 100;
-        color: rgba(255, 255, 255, 0.5);
+        width: 47%;
+        height: 47%;
       }
     }
   }
