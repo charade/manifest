@@ -15,6 +15,7 @@
       @for(action of
       SideNavActionsEnum.getActionsButtons(currentRoute()).get(section); track
       $index) {
+
       <li [class.active]="action.active" (click)="execSideNavAction(action)">
         {{ action.label }}
       </li>

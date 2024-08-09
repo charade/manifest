@@ -4,13 +4,8 @@ import { AuthService, ModalService } from '@services';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { EditProfileComponent } from 'app/views/edit-profile/edit-profile.component';
 import { SideNavAction, SideNavActionsEnum } from '@enums';
-import {
-  NavigationStart,
-  RouteConfigLoadEnd,
-  RouteConfigLoadStart,
-  Router,
-} from '@angular/router';
-import { filter, first, map, take } from 'rxjs';
+import { NavigationStart, Router } from '@angular/router';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',

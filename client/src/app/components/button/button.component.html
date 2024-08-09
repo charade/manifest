@@ -1,0 +1,9 @@
+<div class="btn-container" (click)="onClick.emit($event)">
+  @if(iconPosition === 'before'){
+  <app-icon [iconName]="icon" />
+  }
+  {{ text }}
+  @if (iconPosition === 'after') {
+  <app-icon [iconName]="icon" />
+  }
+</div>

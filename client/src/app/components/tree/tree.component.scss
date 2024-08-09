@@ -1,0 +1,59 @@
+@import "../../../styles/colors.scss";
+
+:host {
+  align-self: center;
+  height: 100%;
+  width: 24rem;
+
+  background-color: #fff;
+
+  .tree-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding-left: 1rem;
+
+    .tree-item {
+      margin: 1rem 0;
+
+      &:not(:last-child) {
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+      }
+
+      .level-label {
+        font-size: 2rem;
+        font-family: KhandMedium;
+        margin: 0;
+        color: rgba(0, 0, 0, 0.55);
+      }
+
+      .chapiters-container {
+        display: flex;
+        flex-direction: column;
+        // list-style: none;
+        font-size: calc(1.25rem + 1px);
+        font-weight: 300;
+        color: rgba(0, 0, 0, 0.5);
+
+        padding: 0;
+        padding-left: 2rem;
+
+        & > * {
+          padding: 0.5rem;
+          width: 100%;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &:hover {
+            font-size: calc(1.25rem + 2px);
+            color: #000;
+            background-color: rgba(0, 0, 0, 0.06);
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+          }
+        }
+      }
+    }
+  }
+}

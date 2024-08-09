@@ -1,0 +1,31 @@
+@import "../../../styles/colors.scss";
+
+:host {
+  .btn-container {
+    display: flex;
+    align-items: center;
+    color: $primary;
+    padding: 0.75rem 1rem;
+    border-radius: 7px;
+    border: none;
+    font-size: 1.25rem;
+    background-color: rgba(0, 0, 0, 0.023);
+    cursor: pointer;
+
+    &:hover {
+      background: $primary;
+      color: #fff;
+    }
+
+    & > * {
+      margin: 0 calc(0.25rem + 3px);
+    }
+
+    app-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 0.25rem;
+    }
+  }
+}

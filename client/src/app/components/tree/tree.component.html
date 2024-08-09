@@ -1,0 +1,12 @@
+<div class="tree-container">
+  @for(node of dataSource; track $index){
+  <div class="tree-item">
+    <h4 class="level-label">{{ node.label }}</h4>
+    <ul class="chapiters-container">
+      @for(child of node.children; track $index){
+      <li role="button" tabindex="1">{{ child.label }}</li>
+      }
+    </ul>
+  </div>
+  }
+</div>

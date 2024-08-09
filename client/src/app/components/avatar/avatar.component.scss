@@ -2,14 +2,16 @@
 @import "../../../styles/colors.scss";
 
 :host {
+  border-radius: 50%;
+
   .avatar-container {
     @include flexCenteredItems();
     height: 6rem;
     width: 6rem;
-    border-radius: 50%;
     background-color: rgba(22, 177, 254, 0.4);
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
 
     .empty-avatar-icon-container {
       @include flexCenteredItems();
