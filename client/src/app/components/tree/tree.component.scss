@@ -31,23 +31,23 @@
       .chapiters-container {
         display: flex;
         flex-direction: column;
-        // list-style: none;
         font-size: calc(1.25rem + 1px);
         font-weight: 300;
-        color: rgba(0, 0, 0, 0.5);
+        color: rgba(0, 0, 0, 0.7);
 
         padding: 0;
         padding-left: 2rem;
 
         & > * {
           padding: 0.5rem;
+          padding-left: 1rem;
           width: 100%;
           cursor: pointer;
           transition: all 0.3s ease;
 
           &:hover {
             font-size: calc(1.25rem + 2px);
-            color: #000;
+            color: $light-blue;
             background-color: rgba(0, 0, 0, 0.06);
             border-top-left-radius: 5px;
             border-bottom-left-radius: 5px;

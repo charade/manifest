@@ -4,7 +4,7 @@ import { AuthService, ModalService } from '@services';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { EditProfileComponent } from 'app/views/edit-profile/edit-profile.component';
 import { SideNavAction, SideNavActionsEnum } from '@enums';
-import { NavigationStart, Router } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { map } from 'rxjs';
 
 @Component({
@@ -21,6 +21,7 @@ export class SidebarComponent {
 
   #modalService = inject(ModalService);
   #router = inject(Router);
+  #route = inject(ActivatedRoute);
 
   currentRoute = toSignal(
     this.#router.events.pipe(map((event) => (event as NavigationStart).url))
@@ -34,6 +35,8 @@ export class SidebarComponent {
   }
 
   execSideNavAction(action: SideNavAction) {
-    this.#router.navigate([SideNavActionsEnum.sideNavRoute.get(action.label)]);
+    this.#router.navigate([SideNavActionsEnum.sideNavRoute.get(action.label)], {
+      relativeTo: this.#route,
+    });
   }
 }
